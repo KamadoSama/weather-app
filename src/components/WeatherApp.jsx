@@ -9,9 +9,9 @@ import snow_icon from "../assets/snow.png";
 import wind_icon from "../assets/wind.png";
 import humidity_icon from "../assets/humidity.png";
 import drizzle_icon from "../assets/drizzle.png";
-
+const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
 const WeatherApp = () => {
-  let api_key = "c1d5e007007de47e037733d5899b1602";
+  
 
   const [wicon, setWicon] = useState(cloud_icon);
   const search = async () => {
@@ -19,7 +19,7 @@ const WeatherApp = () => {
     if (element[0].value === "") {
       return;
     }
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&units=Metric&appid=${api_key}`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&units=Metric&appid=${API_KEY}`;
     let response = await fetch(url);
 
     let data = await response.json();
@@ -72,7 +72,7 @@ const WeatherApp = () => {
   };
 
   const weatherByLocation = async ({ latitude, longitude }) => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${api_key}&units=Metric`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=Metric`;
     let response = await fetch(url);
 
     let data = await response.json();
@@ -135,8 +135,6 @@ const WeatherApp = () => {
           </div>
         </div>
       </div>
-     
-      
     </>
   );
 };
